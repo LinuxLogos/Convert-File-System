@@ -1,0 +1,112 @@
+{% extends "basetemplate.html" %}
+{% block content %}
+{% load static %}
+    <main class="main-content">
+      <p id="home">Home</p>
+      <section class="convert-type">
+        <ul>
+          <li>
+            <a href="{% url 'pdftoword' %}">
+              <div>
+                <img
+                  src="{% static 'icone/pdf.png' %}"
+                  alt="Icone de pdf"
+                /><img
+                  src="{% static 'icone/word.png' %}"
+                  alt="Icone de word"
+                />
+              </div>
+              <p>Pdf to word</p>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'pdftoexcel' %}">
+              <div>
+                <img
+                  src="{% static 'icone/pdf.png' %}"
+                  alt="Icone de pdf"
+                /><img
+                  src="{% static 'icone/excel.png' %}"
+                  alt="Icone de excel"
+                />
+              </div>
+              <p>Pdf to Excel</p>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <div>
+                <img
+                  src="{% static 'icone/word.png' %}"
+                  alt="Icone de word"
+                /><img src="{% static 'icone/pdf.png' %}" alt="Icone de pdf" />
+              </div>
+              <p>Word to Pdf</p>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <div>
+                <img
+                  src="{% static 'icone/excel.png' %}"
+                  alt="Icone de Excel"
+                /><img src="{% static 'icone/pdf.png' %}" alt="Icone de pdf" />
+              </div>
+              <p>Excel to Pdf</p></a
+            >
+          </li>
+          <li>
+            <a href="">
+              <div>
+                <img src="{% static 'icone/word.png' %}" alt="Icone de Word" />
+                <img src="{% static 'icone/html.png' %}" alt="Icone de html" />
+              </div>
+              <p>Word to Html</p>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <div>
+                <img src="{% static 'icone/imageori.png' %}" alt="">
+                <img
+                  src="{% static 'icone/image.png' %}"
+                  alt="Icone de image arriere plan remove"
+                />
+              </div>
+              <p>Background image</p>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <div>
+                <img
+                  src="{% static 'icone/word.png' %}"
+                  alt="Icone de word"
+                /><img
+                  src="{% static 'icone/excel.png' %}"
+                  alt="Icone de Excel"
+                />
+              </div>
+              <p>Word to Excel</p></a
+            >
+          </li>
+          <li>
+            <a href="">
+              <div>
+                <img
+                  src="{% static 'icone/powerpoint.png' %}"
+                  alt="Icone de powerpoint  "
+                /><img
+                  src="{% static 'icone/html.png' %}"
+                  alt="Icone de Html"
+                />
+              </div>
+              <p>Powerpoint to Html</p>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
+{% endblock %}

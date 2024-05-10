@@ -1,0 +1,21 @@
+{% extends 'basetemplate.html' %}
+
+{% block content %}
+{% load static %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <style>
+        form{
+            display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+        }
+    </style>
+    <input type="file" name="pdf_file" id="pdf_file" accept="pdf">
+    <p>
+    <button type="submit">Convert</button>    </p>
+</form>
+
+{% endblock %}

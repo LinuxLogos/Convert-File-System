@@ -1,0 +1,20 @@
+{% extends 'basetemplate.html' %}
+
+{% block content %}
+{% load static %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    
+    <input type="file" name="pdf_file" id="pdf_file" accept="pdf">
+    <p>
+    <button type="submit">Convert</button>    </p>
+</form>
+<h1>Résultat de la conversion PDF vers Excel</h1>
+{% if excel_file_path %}
+    <p>La conversion a réussi ! Vous pouvez télécharger le fichier Excel ci-dessous :</p>
+    <a href="{{ excel_file_path }}" download>Télécharger le fichier Excel</a>
+{% else %}
+    <p>Il y a eu une erreur lors de la conversion.</p>
+{% endif %}
+{% endblock %}

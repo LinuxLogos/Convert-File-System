@@ -1,0 +1,38 @@
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.core.files.storage import FileSystemStorage
+import tabula
+import pandas as pd
+import os
+
+def convert_pdf_to_excel(request):
+    if request.method == 'POST' and request.FILES['pdf_file']:
+        # Récupérer le fichier PDF depuis la requête
+        pdf_file = request.FILES['pdf_file']
+        
+        # Enregistrer le fichier PDF dans le système de fichiers temporaire de Django
+        fs = FileSystemStorage()
+        filename = fs.save(pdf_file.name, pdf_file)
+        pdf_file_path = fs.path(filename)
+        
+        try:
+            # Extraction des données du PDF
+            df = tabula.read_pdf(pdf_file_path, pages='all')
+            
+            # Fusionner toutes les données extraites en un seul DataFrame
+            merged_df = pd.concat(df)
+            
+            # Création du chemin pour le fichier Excel
+            excel_file_path = os.path.splitext(pdf_file_path)[0] + '.xlsx'
+            
+            # Écriture du DataFrame dans un fichier Excel
+            merged_df.to_excel(excel_file_path, index=False)
+            
+            # Téléchargement du fichier Excel
+            with open(excel_file_path, 'rb') as excel_file:
+                response = HttpResponse(excel_file.read(), content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+                response['Content-Disposition'] = 'attachment; filename="' + os.path.basename(excel_file_path) + '"'
+                return response
+        except Exception as e:
+            return HttpResponse("Erreur lors de la conversion : {}".format(str(e)))
+    return render(request, 'convert_pdf_to_excel.html')
